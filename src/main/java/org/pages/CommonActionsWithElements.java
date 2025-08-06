@@ -77,13 +77,13 @@ public class CommonActionsWithElements {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info(getElementName(webElement) + "Element is displayed");
+                logger.info(getElementName(webElement) + " Element is displayed");
             } else {
-                logger.info(getElementName(webElement) + "Element is not displayed");
+                logger.info(getElementName(webElement) + " Element is not displayed");
             }
             return state;
         } catch (Exception e) {
-            logger.error("Element is not found, so it is not displayed");
+            logger.error(" Element is not found, so it is not displayed");
             return false;
         }
     }
@@ -94,8 +94,8 @@ public class CommonActionsWithElements {
      */
 
     protected void checkIsElementDisplayed(WebElement webElement) {
-        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
-        logger.info("Element is displayed as expected");
+        Assert.assertTrue(" Element is not displayed", isElementDisplayed(webElement));
+        logger.info(" Element is displayed as expected");
     }
 
     /* Method checkTextInElement
@@ -106,7 +106,7 @@ public class CommonActionsWithElements {
 
     protected void checkTextInElement(WebElement webElement, String expectedText) {
         String actualText = webElement.getText();
-        Assert.assertEquals("Text in element does not match expected text", expectedText, actualText);
+        Assert.assertEquals("Text in element does not match expected text ", expectedText, actualText);
         logger.info("Text in element matches expected text: " + expectedText);
     }
 
