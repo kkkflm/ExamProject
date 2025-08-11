@@ -19,7 +19,7 @@ public class CommonActionsWithElements {
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);// ініціалізує елементи описані в FindBy
+        PageFactory.initElements(webDriver, this);
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
@@ -35,14 +35,8 @@ public class CommonActionsWithElements {
         }
     }
 
-    /* Method clickOnElement
-     * Clicks on the specified WebElement.
-     * @param webElement - the WebElement to click
-     */
-
     protected void clickOnElement(WebElement webElement) {
         try {
-//            webDriverWait10.until(driver -> webElement.isDisplayed() && webElement.isEnabled());
             webDriverWait10
                     .withMessage("Element is not clickable: " + webElement)
                     .until(ExpectedConditions.elementToBeClickable(webElement));
@@ -56,7 +50,6 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
-//            webDriverWait10.until(driver -> webElement.isDisplayed() && webElement.isEnabled());
             webDriverWait10
                     .withMessage("Element is not clickable: " + webElement)
                     .until(ExpectedConditions.elementToBeClickable(webElement));
@@ -66,12 +59,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
-    /* Method isElementDisplayed
-     * Checks if the specified WebElement is displayed.
-     * @param webElement - the WebElement to check
-     * @return true if the element is displayed, false otherwise
-     */
 
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
@@ -88,21 +75,10 @@ public class CommonActionsWithElements {
         }
     }
 
-    /* Method checkElementDisplayed
-     * Checks if the specified WebElement is displayed on the page.
-     * @param webElement - the WebElement to check
-     */
-
     protected void checkIsElementDisplayed(WebElement webElement) {
         Assert.assertTrue(" Element is not displayed", isElementDisplayed(webElement));
         logger.info(" Element is displayed as expected");
     }
-
-    /* Method checkTextInElement
-     * Checks if the text of the specified WebElement matches the expected text.
-     * @param webElement - the WebElement to check
-     * @param expectedText - the expected text to compare with
-     */
 
     protected void checkTextInElement(WebElement webElement, String expectedText) {
         String actualText = webElement.getText();
@@ -110,7 +86,6 @@ public class CommonActionsWithElements {
         logger.info("Text in element matches expected text: " + expectedText);
     }
 
-    //select test in the dropdown
     protected void selectTextInDropdown(WebElement webElement, String text) {
         try {
             Select select = new Select(webElement);
@@ -121,7 +96,6 @@ public class CommonActionsWithElements {
         }
     }
 
-    //select value in the dropdown
     protected void selectValueInDropdown(WebElement webElement, String value) {
         try {
             Select select = new Select(webElement);
@@ -132,7 +106,6 @@ public class CommonActionsWithElements {
         }
     }
 
-    //get element name
     private String getElementName(WebElement webElement) {
         try {
             return webElement.getAccessibleName();
