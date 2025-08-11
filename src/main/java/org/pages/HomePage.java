@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.pages.ParentPage;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class HomePage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -27,6 +29,9 @@ public class HomePage extends ParentPage {
 
     @FindBy(xpath = "(//div[@class='image']/a/img)[1]")
     private WebElement firstProductImage;
+
+    @FindBy(xpath = "//button[contains(@onclick, 'wishlist.add')]")
+    private List<WebElement> wishListButtons;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -72,6 +77,15 @@ public class HomePage extends ParentPage {
 
             ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", firstProductImage);
         }
+        return this;
+    }
+
+    public HomePage clickOnFirstWishListButton() {
+        WebElement button = wishListButtons.stream()
+                .filter(WebElement::isDisplayed)
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Wishlist button not found"));
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();", button);
         return this;
     }
 }

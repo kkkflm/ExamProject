@@ -25,4 +25,8 @@ public class PageProvider {
     public CheckoutPage getCheckoutPage() {
         return new CheckoutPage(webDriver);
     }
+
+    public WishListPage getWishListPage() {
+        return new WishListPage(webDriver);
+    }
 }
